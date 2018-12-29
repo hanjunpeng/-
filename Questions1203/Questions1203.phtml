@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>12月份市场部代理人活动</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.00001,maximum-scale=1.00001,user-scalable=no,minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no, email=no">
+    <link rel="stylesheet" href="{$CDN_BASEURL}/Questions1203/css/Questions1203.css?v=60">
+    <script src="{$CDN_BASEURL}/frame/js/jquery.min.js"></script>
+		<script src="{$CDN_BASEURL}/frame/js/layer/layer.js"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="	http://s29.9956.cn/static/common/js/vconsole.min.js"></script>
+</head>
+<body>
+    {php $link = {$CDN_BASEURL}.'/Questions1203/images'}
+	<!--第一页-->
+	<section id="firstPage" class="activity_firstPage">
+		<div class="activity_rules" id="activity_rules">规则 <i>></i></div>
+		<div class="activity_btn" id="activity_btn"></div>
+	</section>
+	<!-- 规则弹框 -->
+	<section href="javascript:;" class="activity_reles_box" id="activity_reles_box">
+		<div class="activity_rules_mask">
+			<div class="activity_rules_btn" id="activity_rules_btn"></div>
+		</div>
+	</section>
+	<!--第二页-->
+	<section class="secondPage" id="secondPage">
+		<div class="activitySend_content">
+			<div class="activitySend_logo"></div>
+			<ul class="activitySend_box" id="activitySend_box">
+				<li id="n1">
+					<div class="activitySend_title">1、开门红期间 ，您是否已积累了30个以上的精准投保新客户？</div>
+					<div class="activityFlex">
+						<span class="commonspan spanwhilt" name="Q1" data="false" num="20">是</span>
+						<span class="commonspan spanwhilt" name="Q1" data="false">不是</span>
+					</div>
+				</li>
+				<li id="n2">
+					<div class="activitySend_title">2、开门红期间 ，您是否采用了互联网获客方式？</div>
+					<div class="activityFlex">
+						<span class="commonspan spanwhilt" name="Q2" data="false" num="15">是</span>
+						<span class="commonspan spanwhilt" name="Q2" data="false">不是</span>
+					</div>
+				</li>
+				<li id="n3">
+					<div class="activitySend_title">3、开门红期间 ，您现在拥有3种以上的有效展业方式吗？</div>
+					<div class="activityFlex">
+						<span class="commonspan spanwhilt" name="Q3" data="false" num="25">是</span>
+						<span class="commonspan spanwhilt" name="Q3" data="false" >不是</span>
+					</div>
+				</li>
+				<li id="n4">
+					<div class="activitySend_title">4、开门红期间 ，您身边有5个以上的中高端客户吗？</div>
+					<div class="activityFlex">
+						<span class="commonspan spanwhilt" name="Q4" data="false" num="25">是</span>
+						<span class="commonspan spanwhilt" name="Q4" data="false">不是</span>
+					</div>
+				</li>
+				<li id="n5">
+					<div class="activitySend_title">5、开门红期间 ，您有专业形象塑造和个人品牌推广吗？</div>
+					<div class="activityFlex">
+						<span class="commonspan spanwhilt" name="Q5" data="false" num="15">是</span>
+						<span class="commonspan spanwhilt" name="Q5" data="false">不是</span>
+					</div>
+				</li>
+			</ul>
+			<div class="activitySend_footer">
+				<div class="activitySend_btn" id="activitySend_btn"></div>
+				<div class="activitySend_font">测试结果仅供参考</div>
+			</div>
+		</div>
+	</section>
+	<!-- 输入手机号弹框 -->
+	<section class="activity_phoneDialog" id="activity_phoneDialog">
+		<div class="activity_phonebox">
+			<div class="activity_phoneclose" id="activity_phoneclose"></div>
+			<div class="activity_phonetu"></div>
+			<input class="activity_phoneinput" id="activity_phoneinput" type="text" placeholder="输入手机号 ，查看测试结果和获客秘笈">
+			<div class="activity_phonebtn" id="activity_phonebtn"></div>
+		</div>
+	</section>
+	<!-- 分数结果弹框 -->
+	<section class="activity_scorenum" id="activity_scorenum">
+		<div id="activity_scorenumBox">
+			<div class="activity_scoreclose" id="activity_scoreclose"></div>
+			<div class="activity_scorecenter" id="activity_scorecenter"></div>
+			<div class="activity_scorenumBtn" id="activity_scorenumBtn"></div>
+		</div>
+	</section>
+	<!-- 立即咨询弹框 -->
+	<section class="activity_consdialog" id="activity_consdialog">
+		<div class="activity_condbox">
+			<div class="activity_condclose" id="activity_condclose"></div>
+			<div class="activity_condShareBtn" id="activity_condShareBtn"></div>
+		</div>
+	</section>
+	<!-- 分享引导浮层 -->
+	<div class="wxtip" id="JweixinTip">
+		<span class="wxtip-icon"></span>
+		<!-- <p class="wxtip-txt">点击右上角<br/>选择在浏览器中打开</p> -->
+	</div>
+	<script type="text/javascript">
+	window.onload = function(){
+		var doheight = $(document).height();
+		if(Number(doheight) > 580) {
+			// $(".activity_firstPage").css("position","fixed")
+		} else {
+			$(".activity_firstPage").css("min-height","580px")
+		}
+		/** 
+		 * 第一页点击入口 跳 第二页
+		*/
+		var activity_btn = document.getElementById('activity_btn'); // 第一页面的按钮
+		var activity_rules = document.getElementById('activity_rules'); // 第一页面的规则按钮
+		var activity_reles_box = document.getElementById('activity_reles_box'); // 第一页面规则弹框
+		var activity_rules_btn = document.getElementById('activity_rules_btn'); // 第一页面规则close
+		var secondPage = document.getElementById('secondPage'); // 第二页面div
+		// activity_btn.onclick = function() {
+		// 	alert(1)
+		// 	secondPage.style.display = 'block'
+		// }
+		$("#activity_btn").on("click", function() {
+			$("#secondPage").show()
+		})
+		activity_rules.onclick = function() {
+			activity_reles_box.style.display = 'block'
+		}
+		/** 
+		 * 去掉rules弹框
+		*/
+		activity_rules_btn.onclick = function() {
+			activity_reles_box.style.display = 'none'
+		}
+		/** 
+		 * 第二页处理逻辑
+		*/
+		// 验证手机号
+		function isPhoneNo(phone) {
+			var pattern = /^1[34578]\d{9}$/;
+			return pattern.test(phone);
+		};
+		var strValue
+		$("#activitySend_box span").on("click", function (){
+			var num = this.innerHTML
+			// $(this).attr("data", true)
+			if(num === '是') {
+				$(this).addClass("check")
+			}
+			if(num === '不是') {
+				$(this).siblings().removeClass("check")
+			}
+			$(this).addClass("spanRed").attr("data", true).siblings().removeClass("spanRed").attr("data", false)
+		})
+		function Name(name) {
+			var opstion = false
+			var temp = document.getElementsByName(name);
+			for(var i=0; i<temp.length; i++) {
+				if(temp[i].getAttribute("data") == 'true') {
+					opstion = true
+				}
+			}
+			return opstion
+		}
+
+		// 点击立即测试
+		$("#activitySend_btn").click(function () {
+			var n1height = document.getElementById('n1').offsetTop
+			var n2height = document.getElementById('n2').offsetTop
+			var n3height = document.getElementById('n3').offsetTop
+			var n4height = document.getElementById('n4').offsetTop
+			var n5height = document.getElementById('n5').offsetTop
+			var questionArray = new Array("Q1","Q2","Q3","Q4","Q5");
+			for(var i=0; i<questionArray.length; i++) {
+				if(!Name(questionArray[i])) {
+					if(i+1 === 1) {
+						$("#secondPage").animate({"scrollTop":n1height});
+					}
+					if(i+1 === 2) {
+						$("#secondPage").animate({"scrollTop":n2height});
+					}
+					if(i+1 === 3) {
+						$("#secondPage").animate({"scrollTop":n3height});
+					}
+					if(i+1 === 4) {
+						$("#secondPage").animate({"scrollTop":n4height});
+					}
+					if(i+1 === 5) {
+						$("#secondPage").animate({"scrollTop":n5height});
+					}
+					layer.alert("第"+(i+1)+"题 ，您未作答！");
+					return false
+				}
+			}
+			$("#activity_phoneinput").val("")
+			var ary = ['20', '15', '25', '25', '15'];
+			var array = [];
+			for(var i=0; i< $("#activitySend_box li .check").length; i++) {
+				var subnum = ($("#activitySend_box li .check")[i]).getAttribute("num");
+				array.push(subnum)
+			}
+			strValue = 0
+			for(var j=0; j<array.length; j++) {
+				strValue+=Number(array[j])
+			}
+			$("#activity_scorenumBox").removeClass()
+			if(strValue <= 50) {
+				$("#activity_scorenumBox").addClass("activity_scorenumBox50")
+			}
+			if(50 < strValue && strValue <= 70) {
+				$("#activity_scorenumBox").addClass("activity_scorenumBox70")
+			}
+			if(70 < strValue && strValue <= 90) {
+				$("#activity_scorenumBox").addClass("activity_scorenumBox90")
+			}
+			if(90 < strValue && strValue <= 100) {
+				$("#activity_scorenumBox").addClass("activity_scorenumBox100")
+			}
+			$("#activity_phoneDialog").show()
+		})
+		// 输入手机号弹框
+		$("#activity_phoneclose").click(function () {
+			$("#activity_phoneDialog").hide()
+		})
+		var na = window.location.host.indexOf('9956')>-1?true:false
+		// 点击输入手机号提交按钮
+		$("#activity_phonebtn").click(function () {
+			var ajaxurladd= na ? "/huodong/questions1203/add" : "/questions1203/add"
+			var phone = $("#activity_phoneinput").val()
+			if(!isPhoneNo(phone)) { layer.alert('请输入正确的手机号'); return }
+			$.ajax({
+				type: 'post',
+				url: ajaxurladd,
+				data: { phone: phone, score: strValue},
+				success: function (res) {
+					$("#activity_scorecenter").html(strValue+"<i>分</i>") // 分数
+					$("#activity_phoneDialog").hide() // 隐藏分数弹框
+					$("#activity_scorenum").show() // 分数弹框
+				},
+				error: function (e) {
+					layer.alert('网络异常！')
+				}
+			})
+		})
+		$("#activity_scoreclose").click(function () {
+			$("#activity_scorenum").hide()
+		})
+		/** 
+		 * 点击立即咨询
+		*/
+		$("#activity_scorenumBtn").click(function () {
+			var ajaxurlask= na ? "/huodong/questions1203/ask" : "/questions1203/ask"
+			var phone = $("#activity_phoneinput").val()
+			if(!isPhoneNo(phone)) { layer.alert('请输入正确的手机号'); return }
+			$.ajax({
+				type: 'post',
+				url: ajaxurlask,
+				data: { phone: phone },
+				success: function (res) {
+					if(res.code === 0) {
+						$("#activity_scorenum").hide()
+						$("#activity_consdialog").show()
+					} else {
+						layer.alert(res.msg)
+					}
+				},
+				error: function (e) {
+					layer.alert('网络异常！')
+				}
+			})
+		})
+		function weixinTip(ele){
+			var uagent = navigator.userAgent;
+			var isWeixin = !!/MicroMessenger/i.test(uagent);
+				if(isWeixin) {
+				document.getElementById('JweixinTip').style.display='block';
+				document.getElementById('JweixinTip').onclick=function(){
+					this.style.display='none';
+				}
+			}
+		}
+		var activityCondclose = document.getElementById("activity_condclose");
+		var activity_consdialog = document.getElementById("activity_consdialog");
+		var activity_condShareBtn = document.getElementById("activity_condShareBtn");
+		var JweixinTip = document.getElementById('JweixinTip');
+		activityCondclose.onclick= function() {
+			activity_consdialog.style.display = "none"
+		}
+		activity_condShareBtn.onclick= function() {
+			$("#secondPage").animate({"scrollTop":0});
+			activity_consdialog.style.display = "none"
+			JweixinTip.style.display = "block"
+		}
+		JweixinTip.onclick=function(){
+			this.style.display='none';
+		}
+	}
+		// 分享
+		var wxSignData = {$data};
+		wx.config({
+			debug: false,
+			appId: wxSignData.appId,
+			timestamp: wxSignData.timestamp,
+			nonceStr: wxSignData.nonceStr,
+			signature: wxSignData.signature,
+			jsApiList: [
+				'onMenuShareTimeline', // 分享到朋友圈
+				'onMenuShareAppMessage' // 分享到好友
+			]
+		})
+		wx.ready(function () {
+			// 分享到朋友圈
+			wx.onMenuShareTimeline({
+				title: "测一测您的2019开门红业绩", // 分享标题 
+				desc: "想要知道您的2019年开门红业绩吗？赶紧来测试一下吧！测试结果有助您赢得开门红的秘笈哦！拿到秘笈，助你轻松度过开门红！", // 分享描述
+				link: "http://bxd.9956.cn/huodong/questions1203/view", // 分享链接
+				imgUrl: "https://s29.9956.cn/res/activity/Questions1203/images/activity_share.jpg", // 分享图标
+				success: function () {
+
+				},
+				cancel: function () {
+
+				}
+			});
+			// 分享给朋友
+			wx.onMenuShareAppMessage({
+				title: "测一测您的2019开门红业绩", // 分享标题 
+				desc: "想要知道您的2019年开门红业绩吗？赶紧来测试一下吧！测试结果有助您赢得开门红的秘笈哦！拿到秘笈，助你轻松度过开门红！", // 分享描述
+				link: "http://bxd.9956.cn/huodong/questions1203/view", // 分享链接
+				imgUrl: "https://s29.9956.cn/res/activity/Questions1203/images/activity_share.jpg", // 分享图标
+				success: function () {
+
+				},
+				cancel: function () {
+
+				}
+			});
+			wx.error(function (res) {
+				console.log("errorMSG:" + JSON.stringify(res))
+			})
+		})
+		
+	</script>
+</body>
+</html>

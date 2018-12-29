@@ -1,0 +1,414 @@
+/* common */
+*{margin:0;padding:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{font-weight:normal;}
+html,body,fieldset,img,iframe,abbr,button{border:0;}
+i,cite,em,var,address,dfn,h1,h2,h3,h4,h5,h6,small{font-style:normal;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+li{list-style:none;}
+pre{font-family:inherit;} 
+textarea{overflow:auto;resize:none;}
+a,button,label{cursor:pointer;}
+a:hover{text-decoration:none;color:#333;}
+a{text-decoration: none;}
+body,textarea,input,button,select{font-family: arial,"microsoft yahei";outline:0;}
+img{max-width: 100%;display: block;}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance: none !important;}
+input[type="number"]{-moz-appearance:textfield;}
+
+.activity_firstPage{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(../images/activitypage12.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+.activity_rules{
+  border-radius: 20px;
+  background-color: #150813;
+  font-size: 12px;
+  color: #402344;
+  position: absolute;
+  right: 17px;
+  top: 19px;
+  padding: 4px 7px;
+  cursor: pointer;
+}
+.firstPage_trans{
+  /* -webkit-transform: translate(-100%);
+  -moz-transform: translate(-100%);
+  transform: translate(-100%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease; */
+}
+.activity_btn{
+  width: 188px;
+  height: 47px;
+  position: absolute;
+  background: url(../images/activitybtn12_icon.png) no-repeat;
+  background-size: 100% 100%;
+  bottom:40px;
+  left: 50%;
+  margin-left: -94px;
+  cursor: pointer;
+}
+.activity_reles_box{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+.activity_rules_mask{
+  position: absolute;
+  width: 307px;
+  height: 143px;
+  background: url(../images/activity12rules.png) no-repeat;
+  background-size: 100% 100%;
+  top: 50%;
+  left: 50%;
+  margin-left: -153.5px;
+  margin-top: -74px;
+}
+.activity_rules_btn{
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  background: url(../images/close.png) no-repeat;
+  background-size: 100% 100%;
+  right: 0;
+  top: -41px;
+}
+
+/* 第二页 */
+.secondPage{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: url(../images/activitybg.jpg) no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 36px 20px;
+  overflow: scroll;
+}
+.activitySend_content{
+  width: 100%;
+  height: auto;
+  border: 2px solid #330a05;
+  border-radius: 15px;
+  background-color: #ffccaa;
+  padding: 0 14px 20px 22px;
+}
+.activitySend_logo{
+  width: 100%;
+  height: 70px;
+  background: url(../images/activity12title.png) no-repeat;
+  background-size: 100% 100%;
+  margin-top: 26px;
+}
+.activitySend_box li{
+  margin-top: 20px;
+}
+.activitySend_box li:nth-child(1){
+  margin-top: 15px;
+}
+.activitySend_title{
+  font-size: 14px;
+  color: #290f2a;
+}
+.activityFlex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+}
+.activitySend_box li .commonspan{
+  width: 105px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  background:#fff;
+  border-radius: 20px;
+  border: 1px solid #330a05;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0); 
+  -ms-transform: translateZ(0); 
+  -o-transform: translateZ(0); 
+  transform: translateZ(0);
+  cursor: pointer;
+}
+.activitySend_box li .commonspan:nth-child(1){
+  margin-right: 38px;
+}
+.activitySend_box li .spanwhilt{
+  background:#fff;
+}
+.activitySend_box li .spanRed{
+  background: #f04258;
+  color: #fff;
+}
+
+/*Page Footer */
+.activitySend_footer{
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
+.activitySend_btn{
+  width: 188px;
+  height: 46px;
+  background: url(../images/activityhuo_icon.png) no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.activitySend_font{
+  margin-top: 10px;
+  font-size: 12px;
+  color: #e4586a;
+}
+
+/* Phone Dialog */
+.activity_phoneDialog{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+.activity_phonebox{
+  width: 286px;
+  height: auto;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left: -143px;
+}
+.activity_phoneclose{
+  position: absolute;
+  top: -35px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/close.png) no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.activity_phonetu{
+  width: 100%;
+  height:26px;
+  background: url(../images/avtivity12tu.png) no-repeat;
+  background-size: 100% 100%;
+  
+}
+.activity_phoneinput{
+  width: 100%;
+  height:50px;
+  border-radius: 30px;
+  /* background: url(../images/activitytrue.png) no-repeat; */
+  /* background-size: 100% 100%; */
+  text-align: center;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.activity_phonebtn{
+  width: 188px;
+  height: 47px;
+  background: url(../images/avtivity12phonebtn.png) no-repeat;
+  background-size: 100% 100%;
+  margin: 11px auto;
+  cursor: pointer;
+}
+
+/* 分数 弹框 */
+.activity_scorenum{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+.activity_scorenumBox50{
+  width: 260px;
+  height: 360px;
+  background: url(../images/activity12dialog50.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -180px;
+  margin-left: -130px;
+  text-align: center;
+}
+.activity_scorenumBox50 .activity_scorenumBtn{
+  width: 146px;
+  height: 36px;
+  background: url(../images/activity12soure.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  margin-left: -73px;
+  cursor: pointer;
+}
+.activity_scorenumBox70{
+  width: 265px;
+  height: 370px;
+  background: url(../images/activity12dialog70.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -185px;
+  margin-left: -132px;
+  text-align: center;
+}
+.activity_scorenumBox70 .activity_scorenumBtn{
+  width: 146px;
+  height: 36px;
+  background: url(../images/activity12soure.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  margin-left: -73px;
+}
+.activity_scorenumBox90{
+  width: 265px;
+  height: 406px;
+  background: url(../images/activity12dialog90.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -203px;
+  margin-left: -132px;
+  text-align: center;
+}
+.activity_scorenumBox90 .activity_scorenumBtn{
+  width: 146px;
+  height: 36px;
+  background: url(../images/activity12soure.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  margin-left: -73px;
+}
+.activity_scorenumBox100{
+  width: 265px;
+  height: 416px;
+  background: url(../images/activity12dialog96.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -208px;
+  margin-left: -132px;
+  text-align: center;
+}
+.activity_scorenumBox100 .activity_scorenumBtn{
+  width: 146px;
+  height: 36px;
+  background: url(../images/activity12soure.png) no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  margin-left: -73px;
+}
+.activity_scorenum .activity_scorecenter{
+  font-size: 30px;
+  color: #fff;
+  margin-top: 78px;
+  font-weight: 600;
+}
+.activity_scorenum .activity_scorecenter i{
+  font-size: 16px;
+  margin-left: 3px;
+  font-weight: 500;
+}
+.activity_scorenum .activity_scoreclose{
+  position: absolute;
+  top: -35px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/close.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+
+/* 立即咨询 */
+.activity_consdialog{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+.activity_condbox{
+  width:265px;
+  height: 253px;
+  position: absolute;
+  background: url(../images/activity12phone1.png) no-repeat;
+  background-size: 100% 100%;
+  top: 30%;
+  left: 50%;
+  margin-left: -132px;
+}
+.activity_consdialog .activity_condShareBtn{
+  position: absolute;
+  bottom: 19px;
+  left: 50%;
+  margin-left: -73px;
+  width: 146px;
+  height: 36px;
+  background: url(../images/activity12shareBtn.png) no-repeat;
+  background-size: 100% 100%;
+}
+.activity_consdialog .activity_condclose{
+  position: absolute;
+  top: -35px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/close.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+/* weChat Mask*/
+.wxtip{
+  background: rgba(0,0,0,0.7); 
+  text-align: center; 
+  position: fixed; 
+  left:0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: 998; 
+  display: none;
+}
+.wxtip-icon{
+  width: 178px;
+  height: 212.5px;
+  background: url(../images/activity12shareRow.png) no-repeat; 
+  background-size: 100% 100%;
+  display: block; 
+  position: absolute; 
+  right: 20px; 
+  top: 20px;
+}
+.wxtip-txt{
+  margin-top: 107px; 
+  color: #fff; 
+  font-size: 16px; 
+  line-height: 1.5;
+}
