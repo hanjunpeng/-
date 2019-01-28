@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<!--#include file="/include/arg.htm"-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>买保险 怎么选更划算？</title>
+	<meta name="description" content="保险专家免费定制3家保险方案"> 
+	<meta name="keywords" content="保险，养老保险，医疗保险，少儿保险，理财保险，商业保险，人寿保险，商业养老保险，个人保险，保险公司"> 
+  <link rel="stylesheet" type="text/css" href='<!--#echo var="CDN_BASEURL"-->/custom/zonghev20180820c/css/base.css?20180823'>
+  <script type="text/javascript" src="//s29.9956.cn/res/public/region/region.js"></script>
+     <script src="/dingzhi/getarea"></script>
+     <script src='<!--#echo var="CDN_BASEURL"-->/js/jquery.min.js'></script>
+     <!-- <script src="//s29.9956.cn/res/custom/js/jquery.questionnaire.js?v=20181204"></script> -->
+     <script src='<!--#echo var="CDN_BASEURL"-->/js/jquery.questionnaire.js?v=20181204'></script>
+     <style>#region select{width: 200px;height: 30px;border:1px solid #cebcbc;border-radius:4px;margin-right: 20px} .region-title{font-size: 16px;color:#555;line-height: 40px;padding-left:20px}</style>
+     <script type="text/javascript">
+      function getUrlArgs() {
+          var argStr = window.location.search ? window.location.search.substring(1) : "";
+          var argObj = {},
+          item = null,
+          value = null,
+          key = null,
+          argArr = argStr.length > 0 ? argStr.split("&") : [];
+          for (var i = 0, len = argArr.length; i < len; i++) {
+          item = argArr[i].split("=");
+          key = item[0];
+          value = item[1];
+          argObj[key] = value;
+          }
+          return argObj
+      }
+      var __source= getUrlArgs().usouce||"Direct";
+      __source=__source.replace("submit_","questionpage_");
+       var _hmt = _hmt || [];
+       _hmt.push(['_setAccount', '81ccc43dba0a56b9fcb715e64b6ec9a2']);
+       _hmt.push(['_setAutoPageview', false]);
+       _hmt.push(['_trackPageview', __source]);
+        
+     </script>
+     <script type="text/javascript">
+       (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?81ccc43dba0a56b9fcb715e64b6ec9a2";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+     </script>
+</head>
+<body>
+    <div class="banner1"></div>
+    <div class="banner2"></div>
+    <div class="bannerfont">已有 <span id="bannerfontspan"></span> 名用户填写问卷</div>
+    <div class="banner-querr">
+      <div class="bannericon-box">
+          <div class="banner-icon"></div>
+      </div>
+      <div class="banner-ul" id="bannerulquerr">
+        <div class="bannerulbox" id="bannerulbox"></div>
+        <div class="list-parent2" id="listparent2"></div>
+      </div>
+    </div>
+    <div class="banner-bg"></div>
+    <div class="main">
+      <!-- <div class="mainphone"></div> -->
+      <div class="list question">
+          <div class="list-box"><div class="list-topicon"></div></div>
+          <div class="list-center">
+            <dl style="margin-bottom:20px">
+              <p class="region-title">请选择您的实际投保区域：</p>
+              <div id="region" style="padding-left: 24px;">
+                <input name="region" type="hidden" value="" />
+              </div>
+            </dl>
+            <div id="question"></div>
+            
+          </div>
+          <div class="btn_c">
+            <!-- <input class="btn js_btnsubmit" type="button" value="确认提交"> -->
+            <div class="btn js_btnsubmit"></div>
+          </div>
+      </div>
+    </div>
+    <div class="server1"></div>
+    <div class="server2"></div>
+    <div class="server3"></div>
+    <div class="footer"></div>
+    <script type="text/javascript">
+        var parameter = getUrlParameter();
+            window.parameter = parameter;
+        $(document).ready(function () {
+          mathSumFunction()
+          var bannerulbox = document.getElementById('bannerulbox');
+          var time = 30;
+          for (var i=0; i<arySum.length; i++) {
+            bannerulbox.innerHTML += `
+            <div class="list-parent">
+              <span class="listname">${arySum[i].name}</span>
+              <span class="listphone">${arySum[i].phone}</span>
+              <span class="listpersion">${arySum[i].persion}</span>
+              <span class="listcenter">${arySum[i].center}</span>
+            </div>
+            `
+          }
+          var bannerulquerr = document.getElementById('bannerulquerr')
+          // var listparent1 = document.getElementById('listparent1')
+          var listparent2 = document.getElementById('listparent2')
+          listparent2.innerHTML = bannerulbox.innerHTML
+          // console.log(bannerulbox, listparent1, listparent2)
+          var mytimer=setInterval(scrollUp,time);
+          var questionUrl = document.domain == 'custom.bxd365.com' ? '//oa.bxd365.com' : '//oa.bxdins.cn';
+          $('#question').Questionnaire({
+            questionnaireId: 4,
+            isPc: false,
+            optionIconCls: 'icon',
+            load: {
+              url: questionUrl + '/api/questionnaire/gets',
+              params: {
+                appid: 'a',
+                qid: 4
+              }
+            },
+            submit: {
+              url: '/questionnaire',
+              params: {
+                pcid: parameter.pcid,
+                phone: parameter.phone
+              },
+              error: function () {
+                alert('很抱歉，请与客服联系 0371-56007780，或稍后重试');
+              }
+            }
+          });
+
+          if(typeof areaInfo !=="undefined") $('input[name="region"]').val(areaInfo);
+	        window.Region = new Region('region', true);
+          $('#region select').change(function(){
+               var regionVal=($('input[name="region"]').val());
+               var regionCode=typeof regionVal=="string"?regionVal.split(":"):[];
+               $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/dingzhi/areaUpdate",
+                data: {
+                  phone:parameter.phone||"",
+                  pcid:parameter.pcid||"",
+                  prncode:regionCode[0]||"0",
+                  citycode:regionCode[1]||"0",
+                  areacode:regionCode[2]||"0"
+                },
+                error: function () {
+                         alert('很抱歉，请与客服联系 0371-56007780，或稍后重试');
+                         return false;
+                 },
+                 success: function(msg){
+                    if (msg.code != 0) {
+                        alert(msg.msg);
+                    }
+                 },
+            });
+          })
+            // 保险公司列表
+            //companys();
+            $(".js_btnsubmit").click(function(){
+              var source1 = __source.replace("questionpage_","questionpage/submit_");
+              var _hmt = _hmt || [];
+              _hmt.push(['_setAccount', '81ccc43dba0a56b9fcb715e64b6ec9a2']);
+              window._hmt && window._hmt.push(['_trackPageview', source1]);
+              if ($('#question').Questionnaire.validate()) {
+                if($("._pop-wrap").length>0){
+                    $("._pop-wrap").show()  
+                  }else{
+                    alert("提交成功");
+                  }
+              } else {
+                alert("请完善您的需求信息");
+              }
+            });
+        });
+        function companys(){
+            var data_arr = {};
+            $.ajax({
+                type: "POST",
+                //dataType: "json",
+                url: "/companys",
+                data: data_arr,
+                error: function () {
+                         alert('很抱歉，定制提交失败，请与客服联系 0371-56007780，或稍后重试');
+                         return false;
+                 },
+                 success: function(msg){
+                    if (msg.code != 0) {
+                        alert(msg.msg);
+                    }else {
+                        var html;
+                        var info=msg.data;
+                        for(var i in info){    
+                            html='<option value="'+i+'">'+info[i]+'</option>';
+                            $(".js_select").append(html);
+                        }    
+                       
+                    }
+                 },
+                dataType:'json'
+            });
+        }
+        function getUrlParameter() {
+            var url = location.search,
+                value;
+            var returnArray = new Array();
+            if(url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i++) {
+                    returnArray[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+                }
+            }
+            return returnArray;
+        }
+        function mathSumFunction() {
+          var mathnum = localStorage.getItem('__mathnum__') || '25453829';
+          var mathSum = (Math.floor(Math.random()*5.4+1))*100000
+          mathSum = Number(mathnum) + Number(mathSum)
+          localStorage.setItem('__mathnum__', mathSum)
+          $("#bannerfontspan").html(mathSum);
+        }
+        function scrollUp() {
+          if (bannerulquerr.scrollTop >= bannerulbox.offsetHeight) {
+            bannerulquerr.scrollTop = 0;
+          } else {
+            bannerulquerr.scrollTop++
+          }
+        }
+        var arySum = [
+          {
+            name: '王先生',
+            persion: '为父亲',
+            center: '定制了养老保险',
+            phone: '158****5478'
+          },
+          {
+            name: '李女士',
+            persion: '为自己',
+            center: '定制了养老+意外',
+            phone: '132****2915'
+          },
+          {
+            name: '林女士',
+            persion: '为自己',
+            center: '定制了意外+重疾',
+            phone: '159****0215'
+          },
+          {
+            name: '白先生',
+            persion: '为儿子',
+            center: '定制了教育险',
+            phone: '170****9234'
+          },
+          {
+            name: '季先生',
+            persion: '为老公',
+            center: '定制了重大疾病',
+            phone: '135****0371'
+          },
+          {
+            name: '王先生',
+            persion: '为自己',
+            center: '定制了意外保险',
+            phone: '180****2349'
+          },
+          {
+            name: '刘女士',
+            persion: '为老婆',
+            center: '定制了医疗疾病',
+            phone: '152****9024'
+          },
+          {
+            name: '姚先生',
+            persion: '为母亲',
+            center: '定制了养老保险',
+            phone: '185****9877'
+          },
+          {
+            name: '赵先生',
+            persion: '为自己',
+            center: '定制了意外+重疾',
+            phone: '177****0325'
+          },
+          {
+            name: '张女士',
+            persion: '为女儿',
+            center: '定制了少儿+教育',
+            phone: '138****9841'
+          },
+          {
+            name: '白先生',
+            persion: '为父亲',
+            center: '定制了养老保险',
+            phone: '136****7365'
+          },
+          {
+            name: '李先生',
+            persion: '为老公',
+            center: '定制了养老保险',
+            phone: '158****2541'
+          },
+          {
+            name: '陶先生',
+            persion: '为儿子',
+            center: '定制了少儿险',
+            phone: '132****3284'
+          },
+          {
+            name: '刘女士',
+            persion: '为自己',
+            center: '定制了医疗保险',
+            phone: '177****7336'
+          },
+          {
+            name: '房先生',
+            persion: '为母亲',
+            center: '定制了养老保险',
+            phone: '152****0215'
+          },
+          {
+            name: '赵女士',
+            persion: '为老婆',
+            center: '定制了理财保险',
+            phone: '130****9374'
+          },
+          {
+            name: '易先生',
+            persion: '为儿子',
+            center: '定制了少儿+教育',
+            phone: '186****1458'
+          },
+          {
+            name: '吴女士',
+            persion: '为丈夫',
+            center: '定制了意外保险',
+            phone: '170****8542'
+          },
+          {
+            name: '童先生',
+            persion: '为父母',
+            center: '定制了养老保险',
+            phone: '135****0327'
+          }
+        ]
+        
+    </script>
+    <style>
+    ._pop-wrap{
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+    ._pop-wrap ._pop-inner{
+         position: absolute;
+         width: 600px;
+         margin:0 auto;
+         top:50%;
+         left:0;
+         right: 0;
+         transform:translateY(-50%);
+        -ms-transform:translateY(-50%);   /* IE 9 */
+        -moz-transform:translateY(-50%); /* Firefox */
+        -webkit-transform:translateY(-50%); /* Safari 和 Chrome */
+        -o-transform:translateY(-50%);    /* Opera */
+    }
+    ._pop-wrap ._pop-inner img{
+      display: block;
+      width: 100%;
+    }
+    ._pop-wrap ._pop-confirm{
+      width: 44%;
+      height: 125px;
+      position: absolute;
+      margin:0 auto;
+      bottom:0;
+      left:0;
+      right: 0;
+    }
+    ._pop-wrap ._pop-close{
+      width: 63px;
+      height: 63px;
+      position: absolute;
+      margin:0 auto;
+      top:0;
+      right: 0;
+    }
+    </style>
+    <script>
+      if(((new Date(2018,10,26,12,00,00).getTime())-(new Date().getTime()))>0){
+        $("body").append('<div class="_pop-wrap"><div class="_pop-inner"><i class="_pop-close"></i><img src="//s29.9956.cn/res/custom/images/pop123.png"><em class="_pop-confirm"></em></div></div>')
+          $("._pop-wrap ._pop-close").click(function(e){
+            e.stopPropagation;
+            $("._pop-wrap").hide();
+          })
+          $("._pop-wrap ._pop-confirm").click(function(){
+            window.location.href="https://www.wjx.cn/jq/31087076.aspx"
+          })
+      }
+    </script>
+</body>
+</html>
