@@ -1,0 +1,319 @@
+<!-- 阿里云滑动验证 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<title>保险岛钻石服务</title>
+	<script src="{$resDomainPath}/js/jquery.min.js"></script>
+	<script>
+		window.NVC_Opt = {
+        appkey:'FFFF0N000000000069ED',
+        scene:'ic_message',
+        renderTo:'#captcha',
+        trans: {"key1": "code0", "nvcCode":200},
+        elements: [
+            '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png',
+            '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png'
+        ], 
+        bg_back_prepared: '//img.alicdn.com/tps/TB1skE5SFXXXXb3XXXXXXXXXXXX-100-80.png',
+        bg_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABQCAMAAADY1yDdAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefk5w+ruswAAAAfSURBVFjD7cExAQAAAMKg9U9tCU+gAAAAAAAAAIC3AR+QAAFPlUGoAAAAAElFTkSuQmCC',
+        obj_ok: '//img.alicdn.com/tfs/TB1rmyTltfJ8KJjy0FeXXXKEXXa-50-74.png',
+        bg_back_pass: '//img.alicdn.com/tfs/TB1KDxCSVXXXXasXFXXXXXXXXXX-100-80.png',
+        obj_error: '//img.alicdn.com/tfs/TB1q9yTltfJ8KJjy0FeXXXKEXXa-50-74.png',
+        bg_back_fail: '//img.alicdn.com/tfs/TB1w2oOSFXXXXb4XpXXXXXXXXXX-100-80.png',
+        upLang:{"cn":{
+            _ggk_guide: "请在屏幕上滑动，刮出两面盾牌",
+            _ggk_success: "恭喜您成功刮出盾牌<br/>继续下一步操作吧",
+            _ggk_loading: "加载中",
+            _ggk_fail: ['呀，盾牌不见了<br/>请', "javascript:noCaptcha.reset()", '再来一次', '或', "http://survey.taobao.com/survey/QgzQDdDd?token=%TOKEN", '反馈问题'],
+            _ggk_action_timeout: ['我等得太久啦<br/>请', "javascript:noCaptcha.reset()", '再来一次', '或', "http://survey.taobao.com/survey/QgzQDdDd?token=%TOKEN", '反馈问题'],
+            _ggk_net_err: ['网络实在不给力<br/>请', "javascript:noCaptcha.reset()", '再来一次', '或', "http://survey.taobao.com/survey/QgzQDdDd?token=%TOKEN", '反馈问题'],
+            _ggk_too_fast: ['您刮得太快啦<br/>请', "javascript:noCaptcha.reset()", '再来一次', '或', "http://survey.taobao.com/survey/QgzQDdDd?token=%TOKEN", '反馈问题']
+            }
+        }
+    }
+	</script>
+	<script src="//g.alicdn.com/sd/nvc/1.1.112/guide.js"></script>
+	<script src="//g.alicdn.com/sd/smartCaptcha/0.0.1/index.js"></script>
+	<script>
+		window.onload = function(){
+      var ic = new smartCaptcha({
+        renderTo: '#sc',
+        width: 300,
+        height: 42,
+        default_txt: '点击按钮开始智能验证',
+        success_txt: '验证成功',
+        fail_txt: '验证失败，请在此点击按钮刷新',
+        scaning_txt: '智能检测中',
+        success: function(data) {
+					$.ajax({
+						type: "POST",
+						url: "/yanzheng/getSafeVerifyCode",
+						dataType: "json",
+						data: {
+							scene: NVC_Opt.scene,
+							token: NVC_Opt.token,
+							sig: data.sig,
+							csessionid: data.sessionId,
+							code: $('#client-input1').val()
+						},
+						success: function (data) {
+							if(data.status) {
+								var type = data.data.type;
+								var text = data.data.text;
+								var titleary = ['验证正确','没有服务码','失效服务码']
+								if(type === 1) {
+									$("#client-title").addClass("client-success")
+									$("#client-crit").addClass("client-bgsuccess")
+									$("#client-title").html(titleary[0])
+								} else if (type === 2) {
+									$("#client-title").addClass("client-fail")
+									$("#client-crit").addClass("client-bgfail")
+									$("#client-title").html(titleary[1])
+								} else {
+									$("#client-title").addClass("client-waining")
+									$("#client-crit").addClass("client-bgwaining")
+									$("#client-title").html(titleary[2])
+								}
+								$("#client-subtitle").html(text)
+							}else{
+									$("#client-title").addClass("client-waining")
+									$("#client-crit").addClass("client-bgwaining")
+									$("#client-title").html("发生异常")
+									$("#client-subtitle").html("请求发生异常，请稍后重试")
+							}
+							$("#client-dialog").show()
+						},
+						error:function(){
+							$("#client-title").addClass("client-waining")
+									$("#client-crit").addClass("client-bgwaining")
+									$("#client-title").html("发生异常")
+									$("#client-subtitle").html("请求发生异常，请稍后重试")
+									$("#client-dialog").show()
+						}
+					})
+        },
+      });
+      ic.init();
+    }
+	</script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+    body{
+      background: #f5f5f5;
+    }
+    i{
+      font-style:normal
+    }
+		.clent-logo img{
+			width: 100%;
+		}
+		.client-box{
+			width: auto;
+      margin: 0px 20px 0 20px;
+			background: #fff;
+		}
+		.client-wrap{
+			text-align: center;
+			padding: 60px 19px 0 19px;
+		}
+		.client-head{
+			
+		}
+		.client-line{
+			background: #ffe0cf;
+			margin: 5px auto;
+			width:91%;
+			height:5px;
+			border-radius: 10px;
+		}
+		.client-head p{
+      font-size: 10px;
+			margin-top: 5px;
+			color: #999999;
+		}
+		.client-h1{
+			font-size: 16px;
+			color: #333333;
+			font-weight: 600;
+		}
+		.client-h1 i{
+			color: #fc6e1c;
+		}
+		.client-content{
+			margin-top: 40px;
+		}
+		.client-font1{
+      font-size: 12px;
+			color: #999999;
+		}
+		.client-font1 span{
+			font-size: 16px;
+		}
+		.client-font1 .client-input1 {
+			padding: 12px;
+			color: #999999;
+			margin-top: 20px;
+			box-sizing:border-box;
+			border: 1px solid #d5d5d5;
+      width: 100%;
+			height: 44px;
+			line-height: 44px;
+      font-size: 18px;
+			outline: none;
+			border-radius: 24px;
+		}
+    .client-font2{
+      padding-bottom: 60px;
+    }
+		.client-font2 .span{
+      display: inline-block;
+			font-size: 16px;
+			color: #999999;
+			margin-top: 20px;
+		}
+		.client-font3{
+			margin-top: 20px !important;
+			margin-left: 0px !important;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.client-btn{
+			width: 190px;
+			height: 46px;
+			line-height: 46px;
+			color: #fff;
+			font-size: 16px;
+			text-align: center;
+			background: #1bbe61;
+			border-radius: 5px;
+			margin-top: 30px;
+		}
+		/* Mask */
+		#client-dialog{
+			display: none;
+		}
+		.client-mask{
+			width:100%;
+			height: 100%;
+			background: rgba(0,0,0,0.6);
+			z-index: 3000;
+			position:fixed;
+			top:0;
+      left:0;
+		}
+		.client-mask .client-result{
+			width: 85%;
+			height: 137px;
+			background: #fff;
+			border-radius: 5px;
+			position: absolute;
+			top:50%;
+      left:0;
+			right: 0;
+			margin: -113px auto 0;
+			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+			padding: 26px 17px 10px 22px;
+			box-sizing: border-box;
+		}
+		.client-result i.close{
+			content: '';
+			background: url("//s29.9956.cn/res/bxd365/images/error_icon_1.png?v=1");
+			background-size: 100%;
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: -40px;
+			right: 0;
+			z-index:99 ;
+		}
+		.client-crit{
+			margin-top: 4px;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			display: inline-block;
+			float: left;
+		}
+		.client-bgsuccess{
+			background: url("//s29.9956.cn/res/bxd365/images/success_icon.png");
+			background-size: 100%;
+		}
+		.client-bgfail{
+			background: url("//s29.9956.cn/res/bxd365/images/fail_icon.png");
+			background-size: 100%;
+		}
+		.client-bgwaining{
+			background: url("//s29.9956.cn/res/bxd365/images/error_icon_2.png");
+			background-size: 100%;
+		}
+		.client-title{
+			display: inline-block;
+			margin-left: 12px;
+			/* margin-top: 35px; */
+			font-size: 18px;
+		}
+		.client-success{
+			color: #1abe5f;
+		}
+		.client-fail{
+			color: #f14342;
+		}
+		.client-waining{
+			color: #ff8123;
+		}
+		.client-subtitle{
+			line-height: 18px;
+			font-size: 12px;
+			color: #333333;
+			margin-left: 40px;
+			margin-top: 8px;
+		}
+	</style>
+</head>
+<body>
+	<a class="clent-logo" href="//www.bxd365.com/"><img src="//s29.9956.cn/res/bxd365/images/gg_logo.png" alt="保险岛"></a>
+	<section class="client-box">
+		<div class="client-wrap">
+			<div class="client-head">
+				<div class="client-h1"><i>客服验证，</i>更安全、更放心</div>
+				<p>为了您的安全操作 ，请您花一点时间进行安全验证</p>
+			</div>
+			<p class="client-line"></p>
+			<div class="client-content">
+				<div class="client-servi">
+					<div class="client-font1"><span>服务唯一码</span><input class="client-input1" id="client-input1"/></div>
+					<div class="client-font2">
+						<span class="span">&nbsp;&nbsp;&nbsp;点击验证</span>
+						<div class="client-font3" id="sc"></div>
+					</div>
+					<!-- <div class="client-btn" >验证</div> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="client-mask" id="client-dialog">
+		<div class="client-result">
+			<div class="client-crit" id="client-crit"></div>
+			<div class="client-title" id="client-title"></div>
+      <div class="client-subtitle" id="client-subtitle"></div>
+      <i class="close"></i>
+		</div>
+	</section>
+<script type="text/javascript">
+	$("#client-dialog .close").click(function() {
+		$("#client-dialog").hide()
+	})
+</script>
+
+</body>
+</html>
